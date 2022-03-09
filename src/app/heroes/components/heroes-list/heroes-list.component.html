@@ -1,0 +1,42 @@
+<div class="row">
+    <div *ngIf="isLoading" class="text-center">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="row" *ngIf="!isLoading">
+        <div class="mt-2">
+            <pagination-controls 
+                id="listing_pagination"
+                [maxSize]="5" 
+                [directionLinks]="true"
+                (pageChange)="pageNum = $event"
+            >
+            </pagination-controls>
+        </div>
+        <div 
+            class="col-12 col-md-6 col-xl-4 my-2" 
+            *ngFor="let hero of heroes | 
+                paginate: { 
+                    id: 'listing_pagination',
+                    itemsPerPage: 9,
+                    currentPage: pageNum,
+                    totalItems: totalRecords 
+                }"
+        >
+            <app-hero 
+                [hero]="hero" 
+                [isMyHero]="isOnMyHeroesPage" 
+                (heroTrained)="sortHeroes()"
+            >
+            </app-hero>
+        </div>
+        <div class="mt-2">
+            <pagination-controls 
+                id="listing_pagination"
+                [maxSize]="5" 
+                [directionLinks]="true"
+                (pageChange)="pageNum = $event"
+            >
+            </pagination-controls>
+        </div>
+    </div>
+</div>

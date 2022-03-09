@@ -1,0 +1,69 @@
+<div class="row justify-content-sm-center">
+    <div class="col-8">
+        <div *ngIf="isLoading" class="text-center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form #createForm="ngForm" (ngSubmit)="onSubmit(createForm)" *ngIf="!isLoading">
+            <div class="form-group my-2">
+                <label for="heroName">Name</label>
+                <input 
+                    type="text"
+                    id="heroName"
+                    class="form-control"
+                    [(ngModel)]="heroName"
+                    name="heroName"
+                    required
+                    #heroname="ngModel"
+                >
+            </div>
+            <div *ngIf="!heroname.valid && heroname.touched" class="form-text text-danger">Hero's name is required</div>
+            <div class="form-group my-2">
+                <label for="suitColors">Suit Colors</label>
+                <input 
+                    type="text"
+                    id="suitColors"
+                    class="form-control"
+                    [(ngModel)]="suitColors"
+                    name="suitColors"
+                    required
+                    minlength="3"
+                    #suitcolors = "ngModel"
+                >
+            </div>
+            <div *ngIf="!suitcolors.valid && suitcolors.touched" class="form-text text-danger">Hero's suit colors are required</div>
+            <div class="form-group my-2">
+                <label for="startingPower">Starting Power</label>
+                <input 
+                    type="number"
+                    id="startingPower"
+                    class="form-control"
+                    [(ngModel)]="startingPower"
+                    name="startingPower"
+                    required
+                    min="1"
+                    #startingpower = "ngModel"
+                >
+            </div>
+            <div *ngIf="!startingpower.valid && startingpower.touched" class="form-text text-danger">Hero's starting power is required</div>
+            <div class="form-group my-2">
+                <label for="ability">Ability</label>
+                <select 
+                    type="text"
+                    id="ability"
+                    class="form-control"
+                    [(ngModel)]="ability"
+                    name="ability"
+                    required
+                    #heroability = "ngModel"
+                >
+                    <option value="Attacker">Attacker</option>
+                    <option value="Defender">Defender</option>
+                </select>
+                <div *ngIf="!heroability.valid && heroability.touched" class="form-text text-danger">Hero's ability is required</div>
+            </div>
+            <div class="my-2">
+                <button type="submit" [disabled]="!createForm.valid" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>

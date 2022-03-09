@@ -1,0 +1,22 @@
+<div class="card" style="width: 18rem;">
+    <img [src]='hero.imgUrl' class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{hero.name}}</h5>
+      <p class="card-text">ID: {{hero.id}}</p>
+      <p class="card-text">Ability: {{hero.ability}}</p>
+      <p class="card-text">Suit Colors: {{hero.suitColors}}</p>
+      <p class="card-text">Date Started Training: {{hero.dateStartedTraining | date}}</p>
+      <p class="card-text">Starting Power: {{hero.startingPower}}</p>
+      <p class="card-text">Power Level: {{hero.currentPower | number : '1.2-2'}}</p>
+      <button 
+        *ngIf="isMyHero"
+        class="btn btn-primary"
+        type="button"
+        [disabled]="reachedDailyLimit"
+        (click)="trainHero()"
+      >
+        Train Hero
+      </button>
+      <div *ngIf="reachedDailyLimit" class="form-text text-danger">{{ errorMsg }}</div>
+    </div>
+</div>
